@@ -6,6 +6,9 @@ jobs:
       - image: cimg/node:14.16.1
     steps:
       - checkout
+      - run: apt-get update
+      - run: apt-get install python 2.7
+      - run: ln -s /usr/bin/python2.7 /usr/bin/python
       - run: npm install
       - run: npm run lint
       - run: npm test
