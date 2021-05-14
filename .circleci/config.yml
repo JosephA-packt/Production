@@ -6,8 +6,6 @@ jobs:
       - image: cimg/node:14.16.1
     steps:
       - checkout
-      - run: npm cache clean
-      - run: rm -rf node_modules
       - run: npm install
       - run: npm run lint
       - run: npm test
