@@ -1,6 +1,7 @@
 version: 2.1
 jobs:
-  build-and-test:  
+  build:
+    working_directory: ~/tmp
     docker:
       - image: cimg/node:14.16.1
     steps:
@@ -8,7 +9,7 @@ jobs:
       - run: npm install
       - run: npm run lint
       - run: npm test
-      - run: ssh o StrictHostKeyChecking=no $DROPLET_USER@$DROPLET_IP
+      - run: ssh -o StrictHostKeyChecking=no $DROPLET_USER@$DROPLET_IP 'cd prodution; git checkout master; git pull; npm install start:prodution;'
 workflows:
   build-deploy:
     jobs:
